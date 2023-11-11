@@ -1,0 +1,14 @@
+function sumFibs(num) {
+  let fibo =[0, 1];
+  let result = 0;
+  for (let i = 2; i < num*2; i++){
+    let hold = 0;
+    hold = fibo[i - 1] + fibo[i - 2];
+    fibo.push(hold);
+  }
+ fibo.filter((item) => {
+    (item % 2 != 0 && item <= num) ? result += item : result += 0; });
+  return result;
+  };
+ 
+console.log(sumFibs(75025));
