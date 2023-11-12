@@ -1,0 +1,28 @@
+/* Sum All Primes
+A prime number is a whole number greater than 1 with exactly two divisors: 1 and itself. For example, 2 is a prime number because it is only divisible by 1 and 2. In contrast, 4 is not prime since it is divisible by 1, 2 and 4.
+
+Rewrite sumPrimes so it returns the sum of all prime numbers that are less than or equal to num.*/
+
+function sumPrimes(num) {
+  let result = 0;
+  // this for loop "i" is to iterate every number from 1 to num, for example 5--- it will iterate from 1, 2, 3, 4, 5
+  for (let i = 2; i <= num; i++){
+    let isPrime = true;
+
+//this for loop utilizes the Sieve of Eratosthenes algorithm of prime numbers. It will check if the "i" is prime. If the "i" modulus j is === 0, then it is not a prime, then the variable isPrime will become false and the loop will break. Else if the i % j !== 0, then it will just iterate to the next j value (notice j++)
+  for (let j = 2; j <= Math.sqrt(i); j++){
+    if (i % j === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  // If every number from "i" to its square root does not give a modulus value of 0 from i % j === 0, then the loop of j using the i value will end, the next conditional function will be processed, if the isPrime variable is still true, then the "i" value will be added to the result. 
+    if (isPrime === true){
+      result += i;
+    }
+  }
+//this loop will end when every number from 1 to num is iterated. Then the total sum of result will be returned.
+  return result;
+}
+
+console.log(sumPrimes(977));
