@@ -1,0 +1,38 @@
+/*Smallest Common Multiple
+Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.
+
+The range will be an array of two numbers that will not necessarily be in numerical order.
+
+For example, if given 1 and 3, find the smallest common multiple of both 1 and 3 that is also evenly divisible by all numbers between 1 and 3. The answer here would be 6.
+
+ */
+
+function smallestCommons(arr) {
+  //First I itirate the array to get the numbers from the range of arr[0] to arr[1]. For example, the input is [1,5], thus it will give me 1, 2, 3, 4, 5. 
+  let sortNum = [];
+  let max = Math.max(arr[0], arr[1]);
+  let min = Math.min(arr[0], arr[1]);
+//Before I execute this loop, I make sure that the min and max are defined so it will automatically sort the numbers in the process.
+  for (let i = min; i <= max; i++) {
+    sortNum.push(i);
+  }
+//Now this is where the problem's algorithm happens. The logic behind this is that, we will take the first maximum number and divide it with every number in the sortNum. For this, the max number is 5, and it will divide it by 1, 2, 3,4, and 5. And at the very start we define that isCM is true.
+  for (let i = max; ; i += max) {
+    let isCM = true;
+//Now on this loop, we will iterate the values on the sortNum and we will use modulus operator to see if it divides the maximum number without remainder. If it failed the condition block, it will make isCM false and break the "j" for loop. Then the i which is equal to five will be doubled and will become 10 as stated on the "i" for loop.
+    for (let j = 0; j < sortNum.length; j++) {
+      if (i % sortNum[j] !== 0) {
+        isCM = false;
+        break;
+      }
+    }
+//When you passed the "j" for loop without breaking, you will have an isCM value of true. In this conditional block, it will only return the "i" or the smallest common multiple of the input, in this case [1, 5], when the isCM is still true.
+    if (isCM) {
+      return i;
+    }
+  }
+}
+
+console.log(smallestCommons([23, 18]));
+
+//note: this function is originally made by me for my practice. It has a time complexity of O(n*m) which is not bad with data that is not that big. But after answering this, I researched for a better algorithm and I found out one which has a time complexity of O(n*log(m)) using the Euclidean GCD and LCM relationship.
