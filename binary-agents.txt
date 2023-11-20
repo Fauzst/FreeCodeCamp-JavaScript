@@ -1,0 +1,19 @@
+function binaryAgent(str) {
+  let biLetter = str.split(" ");
+  let translate = [];
+  // first we define 2 functions, one for splitting the str input and the other is to be used for collecting the single character of the translated binary code. 
+  for (let i = 0; i < biLetter.length; i++){
+    translate.push(String.fromCharCode(parseInt(biLetter[i], 2)));
+    // this for function then iterate each array inside the biLetter, and translate each of them. This will give the translate variable a value of ["A", "r", "e", "n", "'", "t", " ", "b", "o", "n", "f", "i", "r", "e", "s", " ", "f", "u", "n", "!", "?"]
+    // Then inside the for loop, the biLetter[i]'s string will be converted into a number, from "01000001" to 01000001, then the 2 beside the biLetter[i] will convert the 01000001 to its base 10 or decimal value which is 65. Then the String.fromCharCode will convert the 65 into its respective ASCII value which is the letter "A". This process will repeat through the for loop.
+  
+  } 
+  //after that process, a new variable is defined, result, and it will join every items in the translate array to form the sentence Aren't bonfires fun?!
+  let result = translate.join("");
+  console.log(result);
+  return result;
+  
+
+}
+
+binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
