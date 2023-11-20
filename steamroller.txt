@@ -1,0 +1,29 @@
+function steamrollArray(arr) {
+  let flatArray = [].concat(...arr);
+  // Using ...arr will spread the input from [1, [2], [3, [[4]]]] to "1", ["2"], [3, [[4]]], individually. Notice how a single collection of array turned into 3 individual array. 
+  
+  return flatArray.some(Array.isArray) ? steamrollArray(flatArray) : flatArray;
+  //Then this uses a conditional function. Using the function .some(), the argument inside .some() will return a true or false value. If there are still array in the flatArray variable, it will recurse the steamrollArray using the flatArray as the input (below are the value of flatArray for each recursion) until there are no array in the flatArray which will then return just the flatArray. 
+}
+
+console.log(steamrollArray([1, [2], [3, [[4]]]]));
+
+/* Here is the value of each recursion: 
+
+First instance:
+input = [1, [2], [3, [[4]]]];
+flatArray = [].concat(...arr) or
+flatArray = [1, [2], [3, [[4]]];
+
+Recursion 1:
+flatArray = [1, 2, 3, [[4]]];
+
+Recursion 2:
+flatArray = [1, 2, 3, [4]];
+
+Recursion 3:
+flatArray = [1, 2, 3, 4]
+
+since the condition flat.some(Array.isArray) will result in false value, the else statement will be executed which is just return flatArray;
+
+*/
