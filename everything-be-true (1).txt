@@ -1,0 +1,8 @@
+function truthCheck(collection, pre) {
+  console.log(Boolean(collection[1][pre]))
+  return collection.every(element => element.hasOwnProperty(pre) && Boolean(element[pre]));
+}
+
+//this problem is simple yet confusing. First we need to define what is truthy? Truthy is when a value is true such as number other than zero, strings, arrays, object, etc. To summarize, something is truthy when it exists. It is non truthy when it is false, "" or empty string, NaN, undefined, etc. The process is it will return the boolean of the collection. Using the function collection.every, which is similar to a for loop iterating each item, the .every() function check all the items in the array if it satisfy the two conditions. First, if the pre variable exists in the collection, and second if the collections' value of pre is truthy. This all undergoes through element. If the pre is "name", it will return true because all the names are truthy. However, when it is "isBot", it will return false because some value of isBot is false. In addition, the "role" will return false as well because Naomi's role is an empty string.
+
+console.log(truthCheck([{name: "Quincy", role: "Founder", isBot: false}, {name: "Naomi", role: "", isBot: false}, {name: "Camperbot", role: "Bot", isBot: true}], "role"));
