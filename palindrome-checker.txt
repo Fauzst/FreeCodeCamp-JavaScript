@@ -1,0 +1,16 @@
+function palindrome(str) {
+  //To practice the functional programming method. We slice the str input so it will not get mutated.
+  let string = str.slice();
+  //Here we squeezed the string together. This process will remove all the non-alphanumeric characters and whitespaces. It will also lower case the input to ensure that case sensitivity is not a problem.
+  let squeezed = string.replace(/\W/g,"")
+                       .replace(/\s/g,"")
+                       .split("_").join("")
+                       .toLowerCase();
+  //Here we split the squeezed string by character. With this the reverse will have an array. For example, squeezed = "cat", in the reverse process it will become reverse = ["c", "a", "t"]. After that we used the .reverse() functionality to reverse the order of the array, and join them again.
+
+  let reverse = squeezed.split("").reverse().join("");
+  //Using a ternary conditional block, we check if the squeezed variable is equal to our reverse. If its true, it will return true, which means that the string we input is a palindrome.
+  return (squeezed === reverse)? true : false;
+}
+
+console.log(palindrome("A man, a plan, a canal. Panama"));
